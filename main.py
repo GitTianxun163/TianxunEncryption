@@ -67,6 +67,10 @@ class Application():
             i += 1
         self.private_text = self.private_text[::-1]
         print("密文:",self.private_text)
+        with open("加密日志.txt","a",encoding="utf-8") as f:
+            f.write("-"*21+"加密日志"+"-"*21+"\n")
+            f.write(f"密钥: {self.seed}\n明文: {self.public_text}\n")
+            f.write("密文: "+self.private_text+"\n")
     
     def Decrypt(self) -> None:
         global error_code
@@ -85,6 +89,10 @@ class Application():
                 self.public_text += chr(ord(s)-seedpass[i%seed_lenth])
             i += 1
         print("明文:",self.public_text)
+        with open("解密日志.txt","a",encoding="utf-8") as f:
+            f.write("-"*21+"解密日志"+"-"*21+"\n")
+            f.write(f"密钥: {self.seed}\n密文: {self.private_text[::-1]}\n")
+            f.write("明文: "+self.public_text+"\n")
 
 if __name__ == "__main__":
     try:
